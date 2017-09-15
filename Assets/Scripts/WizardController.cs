@@ -17,7 +17,7 @@ public class WizardController : MonoBehaviour
     void Update()
     {
         UpdateWizardPosition();
-        LookToMousePosition();
+        LookToMouse();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -44,7 +44,7 @@ public class WizardController : MonoBehaviour
     }
 
     // Makes wizard look towards mouse
-    private void LookToMousePosition()
+    private void LookToMouse()
     {
         Vector3 scale = transform.localScale;
         if (ScreenPosition().x < Input.mousePosition.x)

@@ -2,55 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WizardController : MonoBehaviour {
+public class WizardController : MonoBehaviour
+{
+    public float speed;
 
-	public float speed;
+    public GameObject fireball;
+    public Transform fireposition;
 
-	public GameObject fireball;
-	public Transform fireposition;
+    void Start()
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		Vector3 dir= new Vector3( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0 );
-		if(dir.magnitude > 1.0f) {
-			dir.Normalize();
-		}
+    }
 
-		transform.position += dir * speed * Time.deltaTime;
+    void Update()
+    {
+        UpdateWizardPosition();
+        LookToMousePosition();
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            ShootFireball();
+        }
+    }
 
-		Vector3 scale= transform.localScale;
-		if( ScreenPosition().x < Input.mousePosition.x ) {
-			scale.x = -1;
-		}
-		else{
-			scale.x= 1;
-		}
-		transform.localScale= scale;
+    private void ShootFireball()
+    {
+        GameObject fb = Instantiate(fireball);
+        fb.transform.position = fireposition.position;
 
+        Vector3 fireDirection = Input.mousePosition - ScreenPosition(fireposition);
 
-		if(Input.GetMouseButtonDown(0)){
-			ShootFireball();
-		}
-	}
+        Projectile projectile = fb.GetComponent<Projectile>();
+        projectile.ProjectileDirection(fireDirection);
+    }
 
-	public void ShootFireball(){
-		GameObject fb= Instantiate(fireball);
-		fb.transform.position= fireposition.position;
+    // Get screen position
+    Vector3 ScreenPosition(Transform t = null)
+    {
+        if (t == null) t = transform;
+        return Camera.main.WorldToScreenPoint(t.position);
+    }
 
-		Vector3 fireDirection= Input.mousePosition - ScreenPosition(fireposition);
+    // Makes wizard look towards mouse
+    private void LookToMousePosition()
+    {
+        Vector3 scale = transform.localScale;
+        if (ScreenPosition().x < Input.mousePosition.x)
+        {
+            scale.x = -1;
+        }
+        else
+        {
+            scale.x = 1;
+        }
+        transform.localScale = scale;
+    }
 
-		Projectile projectile= fb.GetComponent<Projectile>();
-		projectile.ProjectileDirection(fireDirection);
-	}
-
-	Vector3 ScreenPosition(Transform t=null){
-		if(t == null) t=transform;
-		return Camera.main.WorldToScreenPoint(t.position);
-	}
+	// Update wizard position with keyboard input
+    private void UpdateWizardPosition()
+    {
+        Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        if (dir.magnitude > 1.0f)
+        {
+            dir.Normalize();
+        }
+        transform.position += dir * speed * Time.deltaTime;
+    }
 }

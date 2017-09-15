@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class WizardController : MonoBehaviour
+public class WizardController : NetworkBehaviour
 {
     public float speed;
 
@@ -16,6 +17,10 @@ public class WizardController : MonoBehaviour
 
     void Update()
     {
+        if (!isLocalPlayer) {
+            return;
+        }
+        
         UpdateWizardPosition();
         LookToMouse();
 

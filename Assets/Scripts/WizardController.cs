@@ -35,11 +35,11 @@ public class WizardController : MonoBehaviour {
 
 
 		if(Input.GetMouseButtonDown(0)){
-			SpawnFireball();
+			ShootFireball();
 		}
 	}
 
-	public void SpawnFireball(){
+	public void ShootFireball(){
 		GameObject fb= Instantiate(fireball);
 		fb.transform.position= fireposition.position;
 

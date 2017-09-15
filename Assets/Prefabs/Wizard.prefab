@@ -50,6 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4231103123821774}
   - component: {fileID: 114939574173408336}
+  - component: {fileID: 114168253541270110}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Untagged
@@ -158,6 +159,38 @@ Transform:
   m_Father: {fileID: 4231103123821774}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114168253541270110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578334394734456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 208
+    i1: 186
+    i2: 17
+    i3: 181
+    i4: 139
+    i5: 62
+    i6: 157
+    i7: 52
+    i8: 169
+    i9: 16
+    i10: 23
+    i11: 173
+    i12: 202
+    i13: 167
+    i14: 131
+    i15: 124
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114939574173408336
 MonoBehaviour:
   m_ObjectHideFlags: 1

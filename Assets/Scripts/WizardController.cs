@@ -20,17 +20,18 @@ public class WizardController : NetworkBehaviour
         if (!isLocalPlayer) {
             return;
         }
-        
+
         UpdateWizardPosition();
         LookToMouse();
 
         if (Input.GetMouseButtonDown(0))
         {
-            ShootFireball();
+            CmdShootFireball();
         }
     }
 
-    private void ShootFireball()
+    [Command]
+    private void CmdShootFireball()
     {
         GameObject fb = Instantiate(fireball);
         fb.transform.position = fireposition.position;
@@ -39,6 +40,10 @@ public class WizardController : NetworkBehaviour
 
         Projectile projectile = fb.GetComponent<Projectile>();
         projectile.ProjectileDirection(fireDirection);
+
+        NetworkServer.Spawn(fb);
+
+        Destroy(fb, 3.0f);
     }
 
     // Get screen position

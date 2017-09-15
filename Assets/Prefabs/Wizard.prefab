@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  fireball: {fileID: 0}
+  fireball: {fileID: 1169897333911886, guid: 0ef133b9b1c98564a8b95ab3d135372b, type: 2}
   fireposition: {fileID: 4433053855745734}
 --- !u!212 &212152106300853680
 SpriteRenderer:

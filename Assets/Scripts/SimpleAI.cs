@@ -19,10 +19,7 @@ public class SimpleAI : MonoBehaviour
     void Update()
     {
         LookToPlayer();
-		wizardController.UpdateWizardPosition(new Vector3(
-            player.transform.position.x - transform.position.x,
-            player.transform.position.y - transform.position.y,
-            0));
+        MoveToPlayer();
     }
 
     void LookToPlayer()
@@ -38,6 +35,23 @@ public class SimpleAI : MonoBehaviour
             scale.x = 1;
         }
 
-		transform.localScale = scale;
+        transform.localScale = scale;
+    }
+
+    private void MoveToPlayer()
+    {
+        wizardController.UpdateWizardPosition(new Vector3(
+                    player.transform.position.x - transform.position.x,
+                    player.transform.position.y - transform.position.y,
+                    0));
+    }
+
+    private void ShootToPlayer()
+    {
+        wizardController.ShootFireball(
+            new Vector3(
+                player.transform.position.x - transform.position.x,
+                player.transform.position.y - transform.position.y,
+                0));
     }
 }

@@ -230,8 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f082062bd685564eab9e5a5590d33cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 1169897333911886, guid: 0ef133b9b1c98564a8b95ab3d135372b, type: 2}
-  fireposition: {fileID: 4406735019168312}
 --- !u!114 &114892186782513720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,8 +242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  fireball: {fileID: 0}
-  fireposition: {fileID: 0}
+  fireball: {fileID: 1169897333911886, guid: 0ef133b9b1c98564a8b95ab3d135372b, type: 2}
+  fireposition: {fileID: 4406735019168312}
 --- !u!212 &212143193569549358
 SpriteRenderer:
   m_ObjectHideFlags: 1

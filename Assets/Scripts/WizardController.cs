@@ -1,81 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class WizardController : NetworkBehaviour
+public class WizardController : MonoBehaviour
 {
     public float speed;
 
     public GameObject fireball;
     public Transform fireposition;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        if (!isLocalPlayer) {
-            return;
-        }
-
-        UpdateWizardPosition();
-        LookToMouse();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            CmdShootFireball();
-        }
-    }
-
-    [Command]
-    private void CmdShootFireball()
+    public void ShootFireball(Vector3 target)
     {
         GameObject fb = Instantiate(fireball);
         fb.transform.position = fireposition.position;
 
-        Vector3 fireDirection = Input.mousePosition - ScreenPosition(fireposition);
+        Vector3 fireDirection = target - ScreenPosition(fireposition);
 
         Projectile projectile = fb.GetComponent<Projectile>();
         projectile.ProjectileDirection(fireDirection);
 
-        NetworkServer.Spawn(fb);
-
         Destroy(fb, 3.0f);
     }
 
+    // Update wizard position with keyboard input
+    public void UpdateWizardPosition(Vector3 target)
+    {
+        // Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        if (target.magnitude > 1.0f)
+        {
+            target.Normalize();
+        }
+        transform.position += target * speed * Time.deltaTime;
+    }
+
+    
     // Get screen position
-    Vector3 ScreenPosition(Transform t = null)
+    public Vector3 ScreenPosition(Transform t = null)
     {
         if (t == null) t = transform;
         return Camera.main.WorldToScreenPoint(t.position);
-    }
-
-    // Makes wizard look towards mouse
-    private void LookToMouse()
-    {
-        Vector3 scale = transform.localScale;
-        if (ScreenPosition().x < Input.mousePosition.x)
-        {
-            scale.x = -1;
-        }
-        else
-        {
-            scale.x = 1;
-        }
-        transform.localScale = scale;
-    }
-
-	// Update wizard position with keyboard input
-    private void UpdateWizardPosition()
-    {
-        Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        if (dir.magnitude > 1.0f)
-        {
-            dir.Normalize();
-        }
-        transform.position += dir * speed * Time.deltaTime;
     }
 }

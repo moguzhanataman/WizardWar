@@ -203,7 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  fireball: {fileID: 1169897333911886, guid: 0ef133b9b1c98564a8b95ab3d135372b, type: 2}
+  fireballCooldown: 3
+  fireballPrefab: {fileID: 1169897333911886, guid: 0ef133b9b1c98564a8b95ab3d135372b,
+    type: 2}
   fireposition: {fileID: 4433053855745734}
   targetCursor: {fileID: 1847024056208158, guid: f11227347e24cd14f9c2966ab29adf84,
     type: 2}

@@ -26,7 +26,7 @@ public class SimpleAI : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
         // TODO: not sure
-        if (wizardController.ScreenPosition().x < player.transform.position.x)
+        if (wizardController.transform.position.x < player.transform.position.x)
         {
             scale.x = -1;
         }
@@ -46,15 +46,11 @@ public class SimpleAI : MonoBehaviour
 
     private void ShootToPlayer()
     {
-        Vector3 direction = BotToPlayerDirection();
-        wizardController.ShootFireball(direction);
+        wizardController.ShootFireball(player.transform.position);
     }
 
     private Vector3 BotToPlayerDirection()
     {
-        return new Vector3(
-            player.transform.position.x - transform.position.x,
-            player.transform.position.y - transform.position.y,
-            0);
+        return player.transform.position - transform.position;
     }
 }

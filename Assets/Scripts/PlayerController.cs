@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 		
         if (Input.GetMouseButtonDown(0))
         {
-            wizardController.ShootFireball(Input.mousePosition);
+            wizardController.ShootFireball(Input.mousePosition - wizardController.ScreenPosition(wizardController.fireposition));
         }
     }
 

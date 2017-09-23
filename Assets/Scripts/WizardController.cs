@@ -5,8 +5,11 @@ using UnityEngine;
 public class WizardController : MonoBehaviour
 {
     public float speed;
+    public float fireballCooldown = 5;
+    private float fireballTS;
 
-    public GameObject fireball;
+
+    public GameObject fireballPrefab;
     public Transform fireposition;
     public GameObject targetCursor;
 
@@ -15,35 +18,43 @@ public class WizardController : MonoBehaviour
         targetCursor = Instantiate(targetCursor);
     }
 
+    void OnDestroy()
+    {
+        Destroy(targetCursor);
+    }
+
     public void ShootFireball(Vector3 target)
     {
-        GameObject fb = Instantiate(fireball);
-        fb.transform.position = fireposition.position;
+        if (fireballTS <= Time.time)
+        {
+            GameObject fb = Instantiate(fireballPrefab);
+            fb.transform.position = fireposition.position;
 
-        Vector3 projectileDirection = target - ScreenPosition(fireposition);
+            Vector3 projectileDirection = target - fireposition.transform.position; // - ScreenPosition(fireposition)
 
-        Projectile projectile = fb.GetComponent<Projectile>();
-        projectile.ProjectileDirection(projectileDirection);
+            Projectile projectile = fb.GetComponent<Projectile>();
+            projectile.ProjectileDirection(projectileDirection);
 
-        Destroy(fb, 3.0f);
+            // Put a target cursor on projectile direction
+            targetCursor.transform.position = target;
 
-        // Put a target cursor on projectile direction
-        targetCursor.transform.position = projectileDirection;
-        Debug.Log(targetCursor.transform.position);
+            fireballTS = Time.time + fireballCooldown;
+        }
+
     }
 
     // Update wizard position with keyboard input
-    public void UpdateWizardPosition(Vector3 target)
+    public void UpdateWizardPosition(Vector3 dir)
     {
         // Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        if (target.magnitude > 1.0f)
+        if (dir.magnitude > 1.0f)
         {
-            target.Normalize();
+            dir.Normalize();
         }
-        transform.position += target * speed * Time.deltaTime;
+        transform.position += dir * speed * Time.deltaTime;
     }
 
-    
+
     // Get screen position
     public Vector3 ScreenPosition(Transform t = null)
     {

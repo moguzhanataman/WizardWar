@@ -6,13 +6,14 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     public int dmg = 1;
+    public float fadeTime = 2;
 
     Vector3 velocity = Vector3.right * 10;
 
     // Use this for initialization
     void Start()
     {
-        Destroy(gameObject, 5.0f);
+        Destroy(gameObject, fadeTime);
     }
 
     // Update is called once per frame

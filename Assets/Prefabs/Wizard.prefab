@@ -49,8 +49,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4231103123821774}
-  - component: {fileID: 114939574173408336}
   - component: {fileID: 50141374776252866}
+  - component: {fileID: 114939574173408336}
   - component: {fileID: 114261826806772842}
   m_Layer: 0
   m_Name: Wizard
@@ -205,6 +205,8 @@ MonoBehaviour:
   speed: 5
   fireball: {fileID: 1169897333911886, guid: 0ef133b9b1c98564a8b95ab3d135372b, type: 2}
   fireposition: {fileID: 4433053855745734}
+  targetCursor: {fileID: 1847024056208158, guid: f11227347e24cd14f9c2966ab29adf84,
+    type: 2}
 --- !u!212 &212152106300853680
 SpriteRenderer:
   m_ObjectHideFlags: 1

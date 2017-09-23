@@ -8,18 +8,28 @@ public class WizardController : MonoBehaviour
 
     public GameObject fireball;
     public Transform fireposition;
+    public GameObject targetCursor;
+
+    void Start()
+    {
+        targetCursor = Instantiate(targetCursor);
+    }
 
     public void ShootFireball(Vector3 target)
     {
         GameObject fb = Instantiate(fireball);
         fb.transform.position = fireposition.position;
 
-        Vector3 fireDirection = target - ScreenPosition(fireposition);
+        Vector3 projectileDirection = target - ScreenPosition(fireposition);
 
         Projectile projectile = fb.GetComponent<Projectile>();
-        projectile.ProjectileDirection(fireDirection);
+        projectile.ProjectileDirection(projectileDirection);
 
         Destroy(fb, 3.0f);
+
+        // Put a target cursor on projectile direction
+        targetCursor.transform.position = projectileDirection;
+        Debug.Log(targetCursor.transform.position);
     }
 
     // Update wizard position with keyboard input

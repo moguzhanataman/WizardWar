@@ -40,18 +40,21 @@ public class SimpleAI : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        wizardController.UpdateWizardPosition(new Vector3(
-                    player.transform.position.x - transform.position.x,
-                    player.transform.position.y - transform.position.y,
-                    0));
+        Vector3 direction = BotToPlayerDirection();
+        wizardController.UpdateWizardPosition(direction);
     }
 
     private void ShootToPlayer()
     {
-        wizardController.ShootFireball(
-            new Vector3(
-                player.transform.position.x - transform.position.x,
-                player.transform.position.y - transform.position.y,
-                0));
+        Vector3 direction = BotToPlayerDirection();
+        wizardController.ShootFireball(direction);
+    }
+
+    private Vector3 BotToPlayerDirection()
+    {
+        return new Vector3(
+            player.transform.position.x - transform.position.x,
+            player.transform.position.y - transform.position.y,
+            0);
     }
 }

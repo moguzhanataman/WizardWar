@@ -1,5 +1,19 @@
-
-
 * Cooldown visualization
-* New skills
+* New skills:
+    - Laser
+    - Blink
+    - Missiles (small AoE dmg like clockwork rocket)
+    - Pushing abilities
+    - Boomerang-like skills.
+    - Granade/Landmine like skills.
+    - Spell reflection.
+    - Spell immune for x seconds.
+    - Stun
+
+* Items and inventory system. Some bonuses:
+    - Movements speed: Boots
+    - Faster spell casting
+    - Cooldown reduction
+    - HP/MP increase and/or regen
 * 
+* Networking
